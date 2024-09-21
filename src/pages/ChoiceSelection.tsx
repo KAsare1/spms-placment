@@ -13,6 +13,7 @@ interface Program {
 const ChoicesPage: React.FC = () => {
   const [programs, setPrograms] = useState<Program[]>([]);
   const [studentId, setStudentId] = useState<number | null>(null);
+  const [studentEmail, setStudentEmail] = useState<string>('');
   const [firstChoice, setFirstChoice] = useState<number | null>(null);
   const [secondChoice, setSecondChoice] = useState<number | null>(null);
   const [thirdChoice, setThirdChoice] = useState<number | null>(null);
@@ -29,6 +30,7 @@ const ChoicesPage: React.FC = () => {
         .get(`https://placement-server.onrender.com/auth/student/${storedStudentId}/`)
         .then((response) => {
           setStudentId(response.data.id);
+          setStudentEmail(response.data.email)
         })
         .catch(() => {
           setErrorMessage('Failed to fetch student details.');
@@ -49,44 +51,49 @@ const ChoicesPage: React.FC = () => {
       });
   }, []);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
 
-    if (!firstChoice || !secondChoice || !thirdChoice || !studentId) {
-      setErrorMessage('Please select all choices and ensure student details are loaded.');
-      return;
-    }
+  if (!firstChoice || !secondChoice || !thirdChoice || !studentId) {
+    setErrorMessage('Please select all choices and ensure student details are loaded.');
+    return;
+  }
 
-    if (firstChoice === secondChoice || firstChoice === thirdChoice || secondChoice === thirdChoice) {
-      setErrorMessage('Please select unique choices for all programs.');
-      return;
-    }
+  if (firstChoice === secondChoice || firstChoice === thirdChoice || secondChoice === thirdChoice) {
+    setErrorMessage('Please select unique choices for all programs.');
+    return;
+  }
 
-    const confirmSubmission = window.confirm('Are you sure you want to submit your choices?');
-    if (!confirmSubmission) {
-      return;
-    }
+  const confirmSubmission = window.confirm('Are you sure you want to submit your choices?');
+  if (!confirmSubmission) {
+    return;
+  }
 
-    setSubmitting(true);
-    const payload = {
-      student: studentId,
-      first_choice: firstChoice,
-      second_choice: secondChoice,
-      third_choice: thirdChoice,
-    };
-
-    try {
-      await axios.post('https://placement-server.onrender.com/placement/choices/', payload);
-      setSuccessMessage('Choices submitted successfully!');
-      setErrorMessage(null);
-    } catch (error: any) {
-      const message = error.response?.data?.error || 'You have already been placed.';
-      setErrorMessage(message);
-      setSuccessMessage(null);
-    } finally {
-      setSubmitting(false);
-    }
+  setSubmitting(true);
+  const payload = {
+    student: studentId,
+    first_choice: firstChoice,
+    second_choice: secondChoice,
+    third_choice: thirdChoice,
+    email: studentEmail,
   };
+
+  try {
+    await axios.post('http://127.0.0.1:8000/choices/submit/', payload);
+    setSuccessMessage('Choices submitted successfully!');
+    console.log('Submitting payload:', payload);
+    setErrorMessage(null);
+  } catch (error: any) {
+    const message = error.response?.data?.error;
+    console.log('Submitting payload:', payload);
+    console.log('Error response:', error.response);
+    setErrorMessage(message);
+    setSuccessMessage(null);
+  } finally {
+    console.log('Submitting payload:', payload);
+    setSubmitting(false);
+  }
+};
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

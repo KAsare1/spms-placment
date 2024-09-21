@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
       localStorage.setItem('student_id', studentId)
 
       // Redirect to dashboard or home page
-      navigate('/choices');
+      navigate('/register');
 
     } catch (error) {
       if (axios.isAxiosError(error)) {
