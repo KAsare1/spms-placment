@@ -10,7 +10,7 @@ const RegistrationPage: React.FC = () => {
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [message, setMessage] = useState<string | null>(null);
 
-  const role = 'STUDENT'; // Hardcoded role
+  // const role = 'STUDENT'; // Hardcoded role
   const navigate = useNavigate(); // Use navigate for routing
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

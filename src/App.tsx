@@ -1,6 +1,6 @@
 
 import './App.css'
-import ChoiceSelectionPage from './pages/ChoiceSelection'
+// import ChoiceSelectionPage from './pages/ChoiceSelection'
 import CodeConfirmationPage from './pages/ConfirmCode'
 import LoginPage from './pages/login'
 import RegistrationPage from './pages/registeration'
