@@ -26,16 +26,16 @@ const CodeConfirmationPage: React.FC = () => {
       return;
     }
 
-    const payload = {
-      student_id: studentId,
-      code,
-    };
+    // const payload = {
+    //   student_id: studentId,
+    //   code,
+    // };
 
     try {
-      await axios.post('https://placement-server.onrender.com/auth/confirm/', payload);
-      setMessage('Code confirmed! Redirecting to login...');
+      // await axios.post('https://placement-server.onrender.com/auth/confirm/', payload);
+      // setMessage('Code confirmed! Redirecting to login...');
       
-      // Redirect to login page after 2 seconds
+      // // Redirect to login page after 2 seconds
       setTimeout(() => {
         navigate('/login');
       }, 1000);
