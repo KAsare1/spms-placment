@@ -52,6 +52,16 @@ const ChoicesPage: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // if (!firstChoice || !secondChoice || !thirdChoice || !studentId) {
+    //   setErrorMessage('Please select all choices and ensure student details are loaded.');
+    //   return;
+    // }
+
+    // if (firstChoice === secondChoice || firstChoice === thirdChoice || secondChoice === thirdChoice) {
+    //   setErrorMessage('Please select unique choices for all programs.');
+    //   return;
+    // }
+
     const confirmSubmission = window.confirm('Are you sure you want to submit your choices?');
     if (!confirmSubmission) {
       return;
