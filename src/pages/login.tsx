@@ -26,6 +26,7 @@ const LoginPage: React.FC = () => {
 
       // Store token in local storage (or session storage if desired)
       localStorage.setItem('token', token);
+      localStorage.setItem('student_id', studentId)
 
       // Redirect to dashboard or home page
       navigate('/choices');
