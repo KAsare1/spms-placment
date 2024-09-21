@@ -26,7 +26,7 @@ const ChoicesPage: React.FC = () => {
   useEffect(() => {
     if (storedStudentId) {
       axios
-        .get(`https://t0fs7sq1-8000.uks1.devtunnels.ms/auth/student/${storedStudentId}/`)
+        .get(`https://placement-server.onrender.com/auth/student/${storedStudentId}/`)
         .then((response) => {
           setStudentId(response.data.id);
         })
@@ -38,7 +38,7 @@ const ChoicesPage: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get('https://t0fs7sq1-8000.uks1.devtunnels.ms/placement/programs/')
+      .get('https://placement-server.onrender.com/placement/programs/')
       .then((response) => {
         setPrograms(response.data);
         setLoadingPrograms(false);
@@ -51,16 +51,6 @@ const ChoicesPage: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    if (!firstChoice || !secondChoice || !thirdChoice || !studentId) {
-      setErrorMessage('Please select all choices and ensure student details are loaded.');
-      return;
-    }
-
-    if (firstChoice === secondChoice || firstChoice === thirdChoice || secondChoice === thirdChoice) {
-      setErrorMessage('Please select unique choices for all programs.');
-      return;
-    }
 
     const confirmSubmission = window.confirm('Are you sure you want to submit your choices?');
     if (!confirmSubmission) {
@@ -76,7 +66,7 @@ const ChoicesPage: React.FC = () => {
     };
 
     try {
-      await axios.post('https://t0fs7sq1-8000.uks1.devtunnels.ms/placement/choices/', payload);
+      await axios.post('https://placement-server.onrender.com/placement/choices/', payload);
       setSuccessMessage('Choices submitted successfully!');
       setErrorMessage(null);
     } catch (error: any) {

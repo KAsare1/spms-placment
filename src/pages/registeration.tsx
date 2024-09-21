@@ -30,7 +30,7 @@ const RegistrationPage: React.FC = () => {
     };
 
     try {
-      await axios.post('https://t0fs7sq1-8000.uks1.devtunnels.ms/auth/register/', payload);
+      await axios.post('https://placement-server.onrender.com/auth/register/', payload);
       setMessage('Registration successful! Please check your email for confirmation.');
       
       // Store the student_id in localStorage

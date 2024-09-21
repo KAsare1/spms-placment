@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
     };
 
     try {
-      const response = await axios.post('https://t0fs7sq1-8000.uks1.devtunnels.ms/auth/login/', payload);
+      const response = await axios.post('https://placement-server.onrender.com/auth/login/', payload);
 
       // Assuming the response contains a token after a successful login
       const { token } = response.data;
