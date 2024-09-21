@@ -13,20 +13,20 @@ const LoginPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const payload = {
-      student_id: studentId,
-      password: password,
-    };
+    // const payload = {
+    //   student_id: studentId,
+    //   password: password,
+    // };
 
     try {
-      const response = await axios.post('https://placement-server.onrender.com/auth/login/', payload);
+      // const response = await axios.post('https://placement-server.onrender.com/auth/login/', payload);
 
-      // Assuming the response contains a token after a successful login
-      const { token } = response.data;
+      // // Assuming the response contains a token after a successful login
+      // const { token } = response.data;
 
-      // Store token in local storage (or session storage if desired)
-      localStorage.setItem('token', token);
-      localStorage.setItem('student_id', studentId)
+      // // Store token in local storage (or session storage if desired)
+      // localStorage.setItem('token', token);
+      // localStorage.setItem('student_id', studentId)
 
       // Redirect to dashboard or home page
       navigate('/register');

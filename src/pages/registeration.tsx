@@ -21,22 +21,22 @@ const RegistrationPage: React.FC = () => {
       return;
     }
 
-    const payload = {
-      student_id: studentId,
-      email,
-      password,
-      password_confirm: passwordConfirm, // Include password_confirm in the payload
-      role,
-    };
+    // const payload = {
+    //   student_id: studentId,
+    //   email,
+    //   password,
+    //   password_confirm: passwordConfirm, // Include password_confirm in the payload
+    //   role,
+    // };
 
     try {
-      await axios.post('https://placement-server.onrender.com/auth/register/', payload);
-      setMessage('Registration successful! Please check your email for confirmation.');
+      // await axios.post('https://placement-server.onrender.com/auth/register/', payload);
+      // setMessage('Registration successful! Please check your email for confirmation.');
       
-      // Store the student_id in localStorage
-      localStorage.setItem('student_id', studentId);
+      // // Store the student_id in localStorage
+      // localStorage.setItem('student_id', studentId);
 
-      // Redirect to the code confirmation page
+      // // Redirect to the code confirmation page
       navigate('/confirm-code');
       
     } catch (error) {
