@@ -32,7 +32,7 @@ const CodeConfirmationPage: React.FC = () => {
     };
 
     try {
-      const response = await axios.post('https://t0fs7sq1-8000.uks1.devtunnels.ms/auth/confirm/', payload);
+      await axios.post('https://t0fs7sq1-8000.uks1.devtunnels.ms/auth/confirm/', payload);
       setMessage('Code confirmed! Redirecting to login...');
       
       // Redirect to login page after 2 seconds
